@@ -11,7 +11,7 @@ def nextPermutation(self, nums: List[int]) -> None:
             nums[j], nums[i] = nums[i], nums[j]
             break
     left, right = i + 1, n -1
-    while left <= right:
+    while left < right:
         nums[left], nums[right] = nums[right], nums[left]
         left += 1
         right -= 1
