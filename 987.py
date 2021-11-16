@@ -3,6 +3,7 @@ def verticalTraversal(self, root: TreeNode) -> List[List[int]]:
         return []
     q = deque([(root, 0, 0)])
     result = []
+    #key is to use the vertical index as key for dictionary and group the node vals with same vertical index as a list
     level = collections.defaultdict(list)
     while q:
         node, row, col = q.popleft()
