@@ -1,29 +1,23 @@
 def treeToDoublyList(self, root: 'Node') -> 'Node':
     if not root:
         return None
-    head, tail = self.dfs(root)
-    tail.right = head
-    head.left = tail
+    #iterative
+    prev, first = None, None
+    stack = []
+    while root or stack:
+        while root:
+            stack.append(root)
+            root = root.left
+        root = stack.pop()
+        if not first:
+            first = root
+        if prev:
+            prev.right = root
+            root.left = prev
+        prev = root
+        root = root.right
+    first.left = prev
+    prev.right = first
+    return first
 
-    return head
-
-
-def dfs(self, root):
-    if not root:
-        return None, None
-    left_head, left_tail = self.dfs(root.left)
-    right_head, right_tail = self.dfs(root.right)
-
-    if left_tail:
-        left_tail.right = root
-        root.left = left_tail
-
-    if right_head:
-        right_head.left = root
-        root.right = right_head
-
-    head = left_head or root
-    tail = right_tail or root
-
-    return  head, tail
 
